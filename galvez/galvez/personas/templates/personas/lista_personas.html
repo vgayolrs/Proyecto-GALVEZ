@@ -1,0 +1,8 @@
+
+<h3>Personas (total en la BD: {{ personas|length }} )</h3>
+<ul>
+    {% for persona in personas %}
+        <li><a href="/personas/{{ persona.id }}/"> {{ persona }}</a></li>
+    {% endfor %}
+</ul>
+
