@@ -1,0 +1,39 @@
+<!-- La platilla base del proyecto y se extiende a otras plantillas -->
+
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="es-ES">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../proto-galvez/_site/galvez-base.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<!-- incluir librería de jQuery y scripts -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <title>Proyecto GALVEZ-BD</title>
+<!-- y aquí se cierra el head -->        
+    </head>
+    <header>
+        <img src="../proto-galvez/img/GalvezBD-02.gif" alt="cabeza" style="max-width:100%;height:auto;" class="center">
+    </header>
+    <div id="contenido_completo">
+        <div id="nav">
+            <ul>
+                <li><a href="/">Inicio</a></li>
+                <li><a href="/buscador">Buscador</a></li>
+                <li><a href="/acerca">Acerca</a></li>
+                </ul>
+        </div>
+        <div id="cuerpo">
+        {% block main %}
+        
+        {% endblock %}
+        </div>
+        <div id="footer">
+          <p><em><img src="../proto-galvez/img/logo-rersab.png" style="float:right;max-width:100%;height:auto;">El Proyecto Gálvez-BD está desarrollado en El Colegio de Michoacán, A.C. en el marco de los trabajos de la Red de Estudios sobre el Régimen de subdelegaciones en la América Bobónica</em></p>
+          <p>Desarrollo: Víctor Gayol</p>
+        </div>
+    </div>
+</html>
