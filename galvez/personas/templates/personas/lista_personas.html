@@ -1,0 +1,14 @@
+{% extends "galvez_base.html" %}
+
+{% block title %}Personas | {{block.super}}{% endblock %}
+
+{% block main %}
+
+<h2>Personas (total en la BD: {{ personas|length }} )</h2>
+<ul>
+    {% for persona in personas %}
+        <li><a href="/personas/{{ persona.id }}/"> {{ persona }}</a></li>
+    {% endfor %}
+</ul>
+
+{% endblock %}

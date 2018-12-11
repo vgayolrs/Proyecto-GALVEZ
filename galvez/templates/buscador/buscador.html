@@ -1,0 +1,63 @@
+{% extends "galvez_base.html" %}
+
+{% block title %}Buscador | {{block.super}}{% endblock %}
+
+{% block main %}
+
+{% block content %}
+
+
+{% endblock %}
+
+<h1>Buscador</h1>
+<p>Por el momento solamente se pueden hacer búsquedas en la <i>Gálvez-BD</i> por personas, localidades (ciudades, villas y pueblos) y jurisdicciones del gobierno secular (alcaldías mayores, corregimientos y subdelegaciones en Indias). También se puede acceder a las demarcaciones territoriales provinciales (provincias e intendencias del siglo XVIII), así como a las demarcaciones territoriales de los distritos de las audiencias recurriendo a las listas específicas al final de esta página.</p>
+<table class="search">
+					<tr>
+						<form action="/personas/buscador_persona/" method="get">
+							<td>
+								<span class="search_param">Personas (por nombre) </span>
+							</td>
+							<td>
+								<input type="text" name="q">
+							</td>
+							<td>
+								<input type="submit" value="Buscar">
+							</td>
+						</form>
+					</tr>
+                    <tr>
+						<form action="/lugares/buscador_localidad/" method="get">
+							<td>
+								<span class="search_param">Lugares (por nombre) </span>
+							</td>
+							<td>
+								<input type="text" name="q">
+							</td>
+							<td>
+								<input type="submit" value="Buscar">
+							</td>
+						</form>
+					</tr>
+                    <tr>
+						<form action="/lugares/buscador_jurisdiccion/" method="get">
+							<td>
+								<span class="search_param">Jurisdicciones (por nombre) </span>
+							</td>
+							<td>
+								<input type="text" name="q">
+							</td>
+							<td>
+								<input type="submit" value="Buscar">
+							</td>
+						</form>
+					</tr>
+				</table>
+
+<p>Los siguientes enlaces llevan a los datos mediante listas.</p>
+<p>Ver la lista completa de: <a href="/personas/lista_personas/">individuos</a><br>
+Ver la lista completa de:  <a href="/lugares/lista_localidades/">localidades</a><br>
+Ver la lista completa de:  <a href="/lugares/lista_jurisdicciones/">jurisdicciones</a><br>
+Ver la lista completa de:  <a href="/lugares/lista_provincias/">provincias</a><br>
+Ver la lista completa de:  <a href="/lugares/lista_audiencias/">audiencias</a></p>
+
+{% endblock %}
