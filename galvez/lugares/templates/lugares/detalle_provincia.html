@@ -1,0 +1,40 @@
+{% extends "galvez_base.html" %}
+{% load static %}
+
+{% block title %}{{provincia.nombre}} | {{block.super}}{% endblock %}
+
+{% block scripts %}{% endblock %}
+
+{% block main %}
+
+<h2>Provincia</h2>
+<p><b>Nombre:</b> {{provincia.nombre|default_if_none:""}}<br>
+<b>Audiencia:</b><br>
+<b>Notas:</b> {{provincia.notas|default_if_none:""}}</p>
+<p><a href="/lugares/lista_provincias">(ir a la lista de provincias)</a></p>
+
+<div>
+    <h4>Cargos en la provincia.</h4>
+    <table>
+        <th>Cargo</th>
+        <th>Persona</th>
+        <th>Años</th>
+        <th>Notas</th>
+        {% for cargo in provincia.cargo_set.all %}
+         <tr>
+            <td>{{cargo.titulo_cargo}}</td>
+            <td><a href="/personas/{{ cargo.persona.id }}/">{{cargo.persona}}</a></td>
+            <td>{{cargo.fecha_inicio}} - {{cargo.fecha_final}}</td>
+            <td>{{cargo.notas}}</td>
+        </tr>
+        {% endfor %}      
+    </table>
+</div>
+
+<h4>Jurisdicciones incluídas</h4>
+<ul>
+{% for ep in en_provincia %}
+<li><a href="/lugares/detalle_jurisdiccion/{{ep.jurisdiccion.id}}/">{{ep.jurisdiccion}}</a></li>
+{% endfor %}
+</ul>
+{% endblock %}

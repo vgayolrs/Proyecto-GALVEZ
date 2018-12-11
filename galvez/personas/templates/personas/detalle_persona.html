@@ -1,0 +1,111 @@
+{% extends "galvez_base.html" %}
+
+{% block title %}{{persona.nombre}} | {{block.super}}{% endblock %}
+
+{% block scripts %}
+<!-- Para los scripts de jquery y otras cosas -->
+{% endblock %}
+
+{% block main %}
+<!-- No entiendo el porqué pero hay que dejar un espacio aquí -->
+<div id=cuerpo">
+    <div id="ficha">
+        <h2>Ficha de persona</h2>
+        <h4>Datos generales:</h4>
+        <p><b>Nombre:</b> {{ persona.nombre|default_if_none:"" }} <br>
+        <b>Género:</b> {{ persona.genero|default_if_none:"" }} <br>
+        <b>Fecha de nacimiento:</b> {{ persona.fecha_nacimiento|default_if_none:"" }} <br>
+        <b>Lugar de nacimiento:</b> <a href="/lugares/{{ persona.lugar_nacimiento.id }}/">{{ persona.lugar_nacimiento|default_if_none:"" }}</a> <br>
+        <b>Fecha de defunción:</b> {{ persona.fecha_defuncion|default_if_none:"" }} <br>
+        <b>Lugar de defunción:</b> <a href="/lugares/{{ persona.lugar_defuncion.id }}/">{{ persona.lugar_defuncion|default_if_none:"" }}</a> <br>
+        <b>Notas:</b> {{ persona.notas|default_if_none:"" }} </p>
+        <p><a href="/personas/lista_personas">(volver a la lista de personas)</a></p>
+    </div>
+    <div id="ocupaciones">
+        <h4 id=ocupaciones>Títulos académicos, militares y nobiliarios</h4>
+        <table>
+            <th>Título</th>
+            <th>Fechas</th>
+            <th>Notas</th>
+            {% for ocupacion in persona.ocupacion_set.all %}
+                <tr>
+                    <td>{{ocupacion.titulo_ocupacion}}</td>
+                    <td>{{ocupacion.fecha_inicio|default_if_none:""}} - {{ocupacion.fecha_final|default_if_none:""}}</td>
+                    <td>{{ocupacion.notas}}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <div id="cursus">
+        <h4>Cursus honorum</h4>
+        <table>
+            <th>Institución</th>
+            <th>Puesto</th>
+            <th>Fechas</th>
+            <th>Notas</th>
+            {% for asignacion in persona.asignacion_set.all %}
+            <tr>
+                <td>{{asignacion.institucion}}</td>
+                <td>{{asignacion.asignacion}}</td>
+                <td>{{asignacion.fecha_inicio}} - {{asignacion.fecha_final}}</td>
+                <td>{{asignacion.notas}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        
+    </div>
+    <div id="cargos"></div>
+        <h4>Cargos</h4>
+        <table class="cuatro_columnas">
+            <th class="nombre_campo">Cargo</th>
+            <th class="nombre_campo">local</th>
+            <th class="nombre_campo">en jurisdicción</th>
+            <th class="nombre_campo">provincial</th>
+            <th class="nombre_campo">Fechas</th>
+            <th class="nombre_campo">Notas</th>
+            {% for cargo in persona.cargo_set.all %}
+                <tr>
+                    <td>{{cargo.titulo_cargo}}</td>
+                    <td><a href="/lugares/{{ cargo.localidad.id }}/">{{cargo.localidad|default_if_none:""}}</a></td>
+                    <td><a href="/lugares/detalle_jurisdiccion/{{ cargo.jurisdiccion.id }}/">{{cargo.jurisdiccion|default_if_none:""}}</a></td>
+                    <td><a href="/lugares/detalle_provincia/{{ cargo.provincia.id }}/">{{cargo.provincia|default_if_none:""}}</a></td>
+                    <td>{{cargo.fecha_inicio}} - {{cargo.fecha_final}}</td>
+                    <td class="notas">{{cargo.notas}}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <div>
+        <h4>Actividades</h4>
+        <table>
+            <th>Año</th>
+            <th>actividad</th>
+            <th>fuente</th>
+            {% for actividad in persona.actividad_set.all %}
+                <tr>
+                    <td>{{actividad.fecha}}</td>
+                    <td>{{actividad.actividad}}</td>
+                    <td>{{actividad.fuente}}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <div>
+        <h4>Relaciones</h4>
+        <table>
+            <th>Relación</th>
+            <th>Persona</th>
+            <th>Año</th>
+            {% for relacion in persona.relacion_set.all %}
+                <tr>
+                    <td>{{relacion.tipo_relacion}}</td>
+                    <td>{{relacion.persona_id_2}}</td>
+                    <td></td>
+                    <td>{{relacion.fecha_inicio}}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+
+{% endblock %}
