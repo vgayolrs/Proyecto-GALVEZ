@@ -1,0 +1,38 @@
+{% extends "galvez_base.html" %}
+{% load static %}
+
+{% block title %}{{localidad.nombre}} | {{block.super}}{% endblock %}
+
+{% block scripts %}{% endblock %}
+
+{% block main %}
+
+<h2>Lugar</h2>
+<p><b>Localidad:</b> {{localidad.nombre|default_if_none:""}}<br>
+<b>Tipo:</b> {{localidad.tipo_localidad|default_if_none:""}}<br>
+<b>Coordenadas:</b> {{localidad.lat|default_if_none:""}} lat. | {{localidad.long|default_if_none:""}} long.<br>
+<b>Jurisdicción:</b> {% for e_j in en_jurisdiccion %}<a href="/lugares/detalle_jurisdiccion/{{e_j.jurisdiccion.id}}">{{e_j.jurisdiccion}}</a> {% endfor %}<br>
+<b>Provincia:</b> {% for e_p in en_provincia %} {{e_p.provincia}} {% endfor %}<br>
+<b>Audiencia:</b> <br>
+<b>Notas:</b> {{localidad.notas|default_if_none:""}}</p>
+<p><a href="/lugares/lista_localidades">(volver a la lista de localidades)</a></p>
+
+<div>
+    <h4>Cargos en la localidad.</h4>
+    <table>
+        <th>Cargo</th>
+        <th>Persona</th>
+        <th>Años</th>
+        <th>Notas</th>
+        {% for cargo in localidad.cargo_set.all %}
+         <tr>
+            <td>{{cargo.titulo_cargo}}</td>
+            <td><a href="/personas/{{ cargo.persona.id }}/">{{cargo.persona}}</a></td>
+            <td>{{cargo.fecha_inicio}} - {{cargo.fecha_final}}</td>
+            <td>{{cargo.notas}}</td>
+        </tr>
+        {% endfor %}      
+    </table>
+</div>
+
+{% endblock %}
