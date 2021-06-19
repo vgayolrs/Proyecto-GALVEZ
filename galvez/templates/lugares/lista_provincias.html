@@ -1,0 +1,14 @@
+{% extends "galvez_base.html" %}
+
+{% block title %}Provincias | {{block.super}}{% endblock %}
+
+{% block main %}
+
+<h2>Intendencias (total en la BD: {{ provincias|length }} )</h2>
+<ul>
+    {% for provincia in provincias %}
+        <li><a href="../detalle_provincia/{{ provincia.id }}/"> {{ provincia }}</a></li>
+    {% endfor %}
+</ul>
+
+{% endblock %}

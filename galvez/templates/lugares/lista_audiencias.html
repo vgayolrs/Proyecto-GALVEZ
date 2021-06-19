@@ -1,0 +1,14 @@
+{% extends "galvez_base.html" %}
+
+{% block title %}Audiencias | {{block.super}}{% endblock %}
+
+{% block main %}
+
+<h2>Audiencias (total en la BD: {{ audiencias|length }} )</h2>
+<ul>
+    {% for audiencia in audiencias %}
+        <li><a href="../detalle_audiencia/{{ audiencia.id }}/"> {{ audiencia }}</a></li>
+    {% endfor %}
+</ul>
+
+{% endblock %}

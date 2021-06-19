@@ -1,0 +1,21 @@
+{% extends "galvez_base.html" %}
+{% load static %}
+
+{% block title %}{{audiencia.nombre}} | {{block.super}}{% endblock %}
+
+{% block scripts %}{% endblock %}
+
+{% block main %}
+
+<h2>Audiencia</h2>
+<p><b>Nombre:</b> {{audiencia.nombre|default_if_none:""}}<br>
+<b>Notas:</b> {{audiencia.notas|default_if_none:""}}</p>
+<p><a href="/lugares/lista_audiencias">(ir a la lista de audiencias)</a></p>
+
+<h4>Jurisdicciones relacionadas</h4>
+<ul>
+{% for e_a in en_audiencia %}
+<li><a href="/lugares/detalle_jurisdiccion/{{e_a.jurisdiccion.id}}/">{{e_a.jurisdiccion}}</a></li>
+{% endfor %}
+</ul>
+{% endblock %}
