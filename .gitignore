@@ -1,0 +1,29 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*.sqlite3
+
+# Django stuff:
+*.log
+db.sqlite3
+/media
+/static
+
+# Environments
+env/
+venv/
+.django_env/
+*.env
+*.DS_Store
+
+# Conda environments
+*.yml
+/conda-meta/
+/envs/
+/*.egg-info
+
+# VSCode
+.vscode/
+
+# Mac
+.DS_Store
